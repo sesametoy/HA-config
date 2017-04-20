@@ -1,0 +1,384 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Sesame
+  # Location required to calculate the time the sun rises and sets
+  latitude: 31.3120
+  longitude: 121.4000
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 4
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Asia/Shanghai
+
+  customize:
+    binary_sensor.door_window_sensor_158d000112570a:
+      friendly_name: Door Sensor
+    binary_sensor.switch_158d00013f853a:
+      friendly_name: Button
+    binary_sensor.motion_sensor_158d0001186e42:
+      friendly_name: living motion
+    sensor.humidity_158d000159f16f:
+      friendly_name: Humidity
+    sensor.temperature_158d000159f16f:
+      friendly_name: Temp
+    sensor.temperature_158d00015afeee:
+      friendly_name: RoomTemp
+    sensor.humidity_158d00015afeee:
+      friendly_name: RoomHumi
+    light.gateway_light_f0b429cc458a:
+      friendly_name: MiLight
+    switch.plug_158d0001168677:
+      friendly_name: XiaoMi Plug
+    binary_sensor.cube_158d0001061249:
+      friendly_name: Cube
+    binary_sensor.motion_sensor_158d00018745af:
+      friendly_name: Master motion
+    binary_sensor.motion_sensor_158d00018757a2:
+      friendly_name: slave motion
+
+# Show links to resources in log and frontend
+#introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Uncomment this to add a password (recommended!)
+  # api_password: PASSWORD
+  # Uncomment this if you are using SSL or running in Docker etc
+  # base_url: example.duckdns.org:8123
+
+# Checks for available updates
+updater:
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+# Weather Prediction
+sensor:
+#  platform: yr
+  # - platform: wunderground
+    # api_key: 79fc04f152766967
+    # monitored_conditions:
+      # - feelslike_c
+      # - pressure_mb
+      # - relative_humidity
+      # - solarradiation
+      # - temp_c
+      # - weather
+      # - wind_degrees
+      # - wind_dir
+      # - wind_kph
+  - platform: darksky
+    api_key: db415b7403f09c6536d25e7b88909fa5
+    update_inverval: '01:00'
+    monitored_conditions:
+      - summary
+      - temperature
+      - humidity
+      - hourly_summary
+      - daily_summary
+
+# Text to speech
+tts:
+  platform: google
+
+#you can leave sid empty if you only have one gateway
+xiaomi:
+ gateways:
+   - sid:
+     key: pnpiy8sy7p0ai52v
+
+device_tracker:
+  - platform: owntracks
+    max_gps_accuracy: 200
+    waypoints: True
+
+
+zone:
+  name: Home
+  latitude: 31.3120
+  longitude: 121.4000
+  radius: 200
+
+zone 2:
+  name: Work
+  latitude: 31.1489
+  longitude: 121.5550
+  radius: 300
+
+zone 3:
+  name: WareHouse
+  latitude: 31.296
+  longitude: 121.4820
+  radius: 300
+
+mqtt:
+  broker: 192.168.1.125
+  port: 1883
+  client_id: home-assistant-1
+  username: ha
+  password: homeassistant
+
+light:
+#- platform: mqtt
+#  name: "ledstrip"
+#  command_topic: "sesame/mqttstrip1/setpower"
+#  state_topic: "sesame/mqttstrip1/setpowerpub"
+#  rgb_state_topic: "sesame/mqttstrip1/setcolorpub"
+#  rgb_command_topic: "sesame/mqttstrip1/setcolor"
+#  brightness_state_topic: "sesame/mqttstrip1/setbrightnesspub"
+#  brightness_command_topic: "sesame/mqttstrip1/setbrightness"
+#  optimistic: false
+#  retain: true
+- platform: mqtt_json
+  name: "ledstrip1"
+  state_topic: "sesame/ledstrip1"
+  command_topic: "sesame/ledstrip1/set"
+  effect: true
+  effect_list:
+    - bpm
+    - candy cane  
+    - confetti  
+    - cyclon rainbow  
+    - dots  
+    - fire  
+    - glitter  
+    - juggle  
+    - lightning
+    - noise  
+    - police all  
+    - police one  
+    - rainbow  
+    - rainbow with glitter  
+    - ripple  
+    - sinelon  
+    - solid  
+    - twinkle  
+  brightness: true
+  flash: true
+  rgb: true
+  optimistic: false
+  qos: 0
+
+- platform: mqtt_json
+  name: "ledstrip2"
+  state_topic: "sesame/ledstrip2"
+  command_topic: "sesame/ledstrip2/set"
+  effect: true
+  effect_list:
+    - bpm
+    - candy cane  
+    - confetti  
+    - cyclon rainbow  
+    - dots  
+    - fire  
+    - glitter  
+    - juggle  
+    - lightning
+    - noise  
+    - police all  
+    - police one  
+    - rainbow  
+    - rainbow with glitter  
+    - ripple  
+    - sinelon  
+    - solid  
+    - twinkle  
+  brightness: true
+  flash: true
+  rgb: true
+  optimistic: false
+  qos: 0
+
+- platform: yeelight
+  devices:
+    192.168.1.143:
+      name: DinnerBulb
+
+
+#input_select:
+#  ledeffect:
+#    name: LED Effect
+#    options:
+#    - "BPM"
+#     - "Candy Cane"
+#     - "Confetti"
+#     - "Cyclon Rainbow"
+#     - "Dots"
+#     - "Fire"
+#     - "Glitter"
+#     - "Juggle"
+#     - "Lightning"
+#     - "Noise"
+#     - "Police All"
+#     - "Police One"
+#     - "Rainbow"
+#     - "Rainbow with Glitter"
+#     - "Ripple"
+#     - "Sinelon"
+#     - "Solid"
+#     - "Twinkle"
+#    initial: "Solid"
+
+input_slider:
+  ledspeed:
+    name: Animatioen Speed
+    initial: 150
+    min: 10
+    max: 150
+    step: 10
+    
+  motion_timer1:
+    name: motion_timer1
+    icon: mdi:timer
+    initial: 10
+    min: 0
+    max: 20
+    step: 1
+
+#  ledbrightness:
+#    name: LED Brightness
+#    initial: 150
+#    min: 10
+#    max: 200
+#    step: 10
+
+####################################################################################################################################################################################################
+automation:
+
+- alias: switch ledon
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d00013f853a
+      click_type: single
+  action:
+    service_template: script.toggle_ledstrip1
+
+- alias: LedStrip1 Animation Speed
+  initial_state: True
+  hide_entity: False
+  trigger:
+    platform: state
+    entity_id: input_slider.ledspeed
+  action:
+    service: mqtt.publish
+    data_template:
+      topic: "sesame/ledstrip1/set"
+      payload: '{"transition":{{ states.input_slider.ledspeed.state | int }}}'
+
+- alias: LedStrip2 Animation Speed
+  initial_state: True
+  hide_entity: False
+  trigger:
+    platform: state
+    entity_id: input_slider.ledspeed
+  action:
+    service: mqtt.publish
+    data_template:
+      topic: "sesame/ledstrip2/set"
+      payload: '{"transition":{{ states.input_slider.ledspeed.state | int }}}'
+
+- alias: Turn on lestrip2 by movement
+  trigger:
+    # platform: event
+    # event_type: motion
+    # event_data:
+      # entity_id: binary_sensor.motion_sensor_158d00018757a2
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d00018757a2
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: sun.sun
+    state: 'below_horizon'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.timed_lamp_entrence
+
+- alias: Turn off ledstrip2 by movement
+  trigger:
+    # platform: event
+    # event_type: motion
+    # event_data:
+      # entity_id: binary_sensor.motion_sensor_158d00018757a2
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d00018757a2
+    from: 'on'
+    to: 'off'
+  condition:
+    condition: state
+    entity_id: sun.sun
+    state: 'below_horizon'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.timer_off_entrence
+
+####################################################################################################################################################################################################
+switch:
+- platform: mqtt
+  name: "TV onoff"
+  state_topic: "home/commands/IR_NEC"
+  command_topic: "home/commands/IR_NEC"
+  payload_on: "849760431"
+  payload_off: "849760431"
+  optimistic: false
+  retain: true
+
+- platform: mqtt
+  name: "433switch1"
+  state_topic: "home/#"
+  command_topic: "home/commands/MQTTto433/PLSL_309/433_1"
+  payload_on: "7926927"
+  payload_off: "7926926"
+  optimistic: false
+  retain: true
+
+- platform: mqtt
+  name: "433switch2"
+  state_topic: "home/#"
+  command_topic: "home/commands/MQTTto433/PLSL_309/433_1"
+  payload_on: "7926925"
+  payload_off: "7926924"
+  optimistic: false
+  retain: true
+
+####################################################################################################################################################################################################
+
+climate:
+  - platform: generic_thermostat
+    name: Study
+    heater: switch.433switch2
+    target_sensor: sensor.temperature_158d000159f16f
+    min_temp: 15
+    max_temp: 28
+    target_temp: 21
+    tolerance: 0.5
+    min_cycle_duration:
+      seconds: 5
+    keep_alive:
+      minutes: 3
+
+group: !include groups.yaml
+
+script: !include scripts.yaml
+
