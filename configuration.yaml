@@ -23,9 +23,9 @@ homeassistant:
     sensor.temperature_158d000159f16f:
       friendly_name: Temp
     sensor.temperature_158d00015afeee:
-      friendly_name: RoomTemp
+      friendly_name: Room Temp
     sensor.humidity_158d00015afeee:
-      friendly_name: RoomHumi
+      friendly_name: Room Humi
     light.gateway_light_f0b429cc458a:
       friendly_name: MiLight
     switch.plug_158d0001168677:
