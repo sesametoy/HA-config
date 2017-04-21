@@ -383,4 +383,4 @@ group: !include groups.yaml
 script: !include scripts.yaml
 
 shell_command:
-  get_latest_config: sudo bash /home/homeassistant/.homeassistant/pullconfig.sh
+  get_latest_config: bash /home/homeassistant/.homeassistant/pullconfig.sh
