@@ -46,3 +46,10 @@ timer_off_entrence:
       entity_id: light.ledstrip2
       data:
         transition: 1
+
+######################################  Autoupdate config yaml file  #########################################
+
+update_config:
+  sequence:
+    - service: shell_command.get_latest_config
+    - service: homeassistant.restart
