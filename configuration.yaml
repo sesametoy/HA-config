@@ -35,7 +35,7 @@ homeassistant:
     binary_sensor.motion_sensor_158d00018745af:
       friendly_name: Master motion
     binary_sensor.motion_sensor_158d00018757a2:
-      friendly_name: slave motion
+      friendly_name: Slave motion
 
 # Show links to resources in log and frontend
 #introduction:
