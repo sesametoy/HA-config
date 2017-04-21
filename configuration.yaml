@@ -110,24 +110,7 @@ device_tracker:
     max_gps_accuracy: 200
     waypoints: True
 
-
-zone:
-  name: Home
-  latitude: 31.3120
-  longitude: 121.4000
-  radius: 200
-
-zone 2:
-  name: Work
-  latitude: 31.1489
-  longitude: 121.5550
-  radius: 300
-
-zone 3:
-  name: WareHouse
-  latitude: 31.296
-  longitude: 121.4820
-  radius: 300
+zone: !include zones.yaml
 
 mqtt:
   broker: 192.168.1.125
