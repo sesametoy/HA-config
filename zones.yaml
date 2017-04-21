@@ -1,19 +1,19 @@
 ###### Zones ######
 
 - name: Home
-  latitude: 31.3120
-  longitude: 121.4000
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
   radius: 200
   icon: mdi:home
 
 - name: Work
-  latitude: 31.1489
-  longitude: 121.5550
+  latitude: !secret work_latitude
+  longitude: !secret work_longitude
   radius: 300
   icon: mdi:work
 
 - name: WareHouse
-  latitude: 31.296
-  longitude: 121.4820
+  latitude: !secret warehouse_latitude
+  longitude: !secret warehouse_longitude
   radius: 300
   icon: mdi:city
