@@ -237,77 +237,7 @@ input_slider:
     step: 1
 
 ####################################################################################################################################################################################################
-automation:
-
-- alias: switch ledon
-  trigger:
-    platform: event
-    event_type: click
-    event_data:
-      entity_id: binary_sensor.switch_158d00013f853a
-      click_type: single
-  action:
-    service_template: script.toggle_ledstrip1
-
-- alias: LedStrip1 Animation Speed
-  initial_state: True
-  hide_entity: False
-  trigger:
-    platform: state
-    entity_id: input_slider.ledspeed
-  action:
-    service: mqtt.publish
-    data_template:
-      topic: "sesame/ledstrip1/set"
-      payload: '{"transition":{{ states.input_slider.ledspeed.state | int }}}'
-
-- alias: LedStrip2 Animation Speed
-  initial_state: True
-  hide_entity: False
-  trigger:
-    platform: state
-    entity_id: input_slider.ledspeed
-  action:
-    service: mqtt.publish
-    data_template:
-      topic: "sesame/ledstrip2/set"
-      payload: '{"transition":{{ states.input_slider.ledspeed.state | int }}}'
-
-- alias: Turn on lestrip2 by movement
-  trigger:
-    # platform: event
-    # event_type: motion
-    # event_data:
-      # entity_id: binary_sensor.motion_sensor_158d00018757a2
-    platform: state
-    entity_id: binary_sensor.motion_sensor_158d00018757a2
-    from: 'off'
-    to: 'on'
-  condition:
-    condition: state
-    entity_id: sun.sun
-    state: 'below_horizon'
-  action:
-    service: homeassistant.turn_on
-    entity_id: script.timed_lamp_entrence
-
-- alias: Turn off ledstrip2 by movement
-  trigger:
-    # platform: event
-    # event_type: motion
-    # event_data:
-      # entity_id: binary_sensor.motion_sensor_158d00018757a2
-    platform: state
-    entity_id: binary_sensor.motion_sensor_158d00018757a2
-    from: 'on'
-    to: 'off'
-  condition:
-    condition: state
-    entity_id: sun.sun
-    state: 'below_horizon'
-  action:
-    service: homeassistant.turn_on
-    entity_id: script.timer_off_entrence
+automation: !include_dir_merge_list automation
 
 ####################################################################################################################################################################################################
 switch:
