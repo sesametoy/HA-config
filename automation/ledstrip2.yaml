@@ -1,0 +1,47 @@
+- alias: LedStrip2 Animation Speed
+  initial_state: True
+  hide_entity: False
+  trigger:
+    platform: state
+    entity_id: input_slider.ledspeed
+  action:
+    service: mqtt.publish
+    data_template:
+      topic: "sesame/ledstrip2/set"
+      payload: '{"transition":{{ states.input_slider.ledspeed.state | int }}}'
+
+- alias: Turn on lestrip2 by movement
+  trigger:
+    # platform: event
+    # event_type: motion
+    # event_data:
+      # entity_id: binary_sensor.motion_sensor_158d00018757a2
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d00018757a2
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: sun.sun
+    state: 'below_horizon'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.timed_lamp_entrence
+
+- alias: Turn off ledstrip2 by movement
+  trigger:
+    # platform: event
+    # event_type: motion
+    # event_data:
+      # entity_id: binary_sensor.motion_sensor_158d00018757a2
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d00018757a2
+    from: 'on'
+    to: 'off'
+  condition:
+    condition: state
+    entity_id: sun.sun
+    state: 'below_horizon'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.timer_off_entrence
