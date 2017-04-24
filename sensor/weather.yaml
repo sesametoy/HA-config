@@ -1,0 +1,22 @@
+platform: yr
+  # - platform: wunderground
+    # api_key: !secret wunderground_api_key
+    # monitored_conditions:
+      # - feelslike_c
+      # - pressure_mb
+      # - relative_humidity
+      # - solarradiation
+      # - temp_c
+      # - weather
+      # - wind_degrees
+      # - wind_dir
+      # - wind_kph
+  - platform: darksky
+    api_key: !secret darksky_api_key
+    update_inverval: '01:00'
+    monitored_conditions:
+      - summary
+      - temperature
+      - humidity
+      - hourly_summary
+      - daily_summary
