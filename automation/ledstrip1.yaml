@@ -1,1 +1,21 @@
-hi
+- alias: switch ledon
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d00013f853a
+      click_type: single
+  action:
+    service_template: script.toggle_ledstrip1
+
+- alias: LedStrip1 Animation Speed
+  initial_state: True
+  hide_entity: False
+  trigger:
+    platform: state
+    entity_id: input_slider.ledspeed
+  action:
+    service: mqtt.publish
+    data_template:
+      topic: "sesame/ledstrip1/set"
+      payload: '{"transition":{{ states.input_slider.ledspeed.state | int }}}'
