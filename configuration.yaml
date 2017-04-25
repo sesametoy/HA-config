@@ -71,29 +71,7 @@ logbook:
 sun:
 
 # Weather Prediction
-sensor:
-#  platform: yr
-  # - platform: wunderground
-    # api_key: !secret wunderground_api_key
-    # monitored_conditions:
-      # - feelslike_c
-      # - pressure_mb
-      # - relative_humidity
-      # - solarradiation
-      # - temp_c
-      # - weather
-      # - wind_degrees
-      # - wind_dir
-      # - wind_kph
-  - platform: darksky
-    api_key: !secret darksky_api_key
-    update_inverval: '01:00'
-    monitored_conditions:
-      - summary
-      - temperature
-      - humidity
-      - hourly_summary
-      - daily_summary
+sensor: !include_dir_merge_list sensor
 
 # Text to speech
 tts:
@@ -110,7 +88,7 @@ device_tracker:
     max_gps_accuracy: 200
     waypoints: True
 
-zone: !include zones.yaml
+
 
 mqtt:
   broker: 192.168.1.125
@@ -118,107 +96,6 @@ mqtt:
   client_id: home-assistant-1
   username: ha
   password: homeassistant
-
-light:
-#- platform: mqtt
-#  name: "ledstrip"
-#  command_topic: "sesame/mqttstrip1/setpower"
-#  state_topic: "sesame/mqttstrip1/setpowerpub"
-#  rgb_state_topic: "sesame/mqttstrip1/setcolorpub"
-#  rgb_command_topic: "sesame/mqttstrip1/setcolor"
-#  brightness_state_topic: "sesame/mqttstrip1/setbrightnesspub"
-#  brightness_command_topic: "sesame/mqttstrip1/setbrightness"
-#  optimistic: false
-#  retain: true
-- platform: mqtt_json
-  name: "ledstrip1"
-  state_topic: "sesame/ledstrip1"
-  command_topic: "sesame/ledstrip1/set"
-  effect: true
-  effect_list:
-    - bpm
-    - candy cane  
-    - confetti  
-    - cyclon rainbow  
-    - dots  
-    - fire  
-    - glitter  
-    - juggle  
-    - lightning
-    - noise  
-    - police all  
-    - police one  
-    - rainbow  
-    - rainbow with glitter  
-    - ripple  
-    - sinelon  
-    - solid  
-    - twinkle  
-  brightness: true
-  flash: true
-  rgb: true
-  optimistic: false
-  qos: 0
-
-- platform: mqtt_json
-  name: "ledstrip2"
-  state_topic: "sesame/ledstrip2"
-  command_topic: "sesame/ledstrip2/set"
-  effect: true
-  effect_list:
-    - bpm
-    - candy cane  
-    - confetti  
-    - cyclon rainbow  
-    - dots  
-    - fire  
-    - glitter  
-    - juggle  
-    - lightning
-    - noise  
-    - police all  
-    - police one  
-    - rainbow  
-    - rainbow with glitter  
-    - ripple  
-    - sinelon  
-    - solid  
-    - twinkle  
-  brightness: true
-  flash: true
-  rgb: true
-  optimistic: false
-  qos: 0
-
-- platform: yeelight
-  devices:
-    192.168.1.143:
-      name: DinnerBulb
-
-
-#input_select:
-#  ledeffect:
-#    name: LED Effect
-#    options:
-#    - "BPM"
-#     - "Candy Cane"
-#     - "Confetti"
-#     - "Cyclon Rainbow"
-#     - "Dots"
-#     - "Fire"
-#     - "Glitter"
-#     - "Juggle"
-#     - "Lightning"
-#     - "Noise"
-#     - "Police All"
-#     - "Police One"
-#     - "Rainbow"
-#     - "Rainbow with Glitter"
-#     - "Ripple"
-#     - "Sinelon"
-#     - "Solid"
-#     - "Twinkle"
-#    initial: "Solid"
 
 input_slider:
   ledspeed:
@@ -236,10 +113,7 @@ input_slider:
     max: 20
     step: 1
 
-####################################################################################################################################################################################################
-automation: !include_dir_merge_list automation
 
-####################################################################################################################################################################################################
 switch:
 - platform: mqtt
   name: "TV onoff"
@@ -284,9 +158,13 @@ climate:
     keep_alive:
       minutes: 3
 
-group: !include groups.yaml
-
-script: !include scripts.yaml
-
 shell_command:
   get_latest_config: bash /home/homeassistant/.homeassistant/pullconfig.sh
+
+####################################################################################################################################################################################################
+automation: !include_dir_merge_list automation
+light: !include_dir_merge_list light
+zone: !include zones.yaml
+group: !include groups.yaml
+script: !include scripts.yaml
+####################################################################################################################################################################################################
