@@ -1,0 +1,8 @@
+- platform: mqtt
+  name: "433switch1"
+  state_topic: "home/#"
+  command_topic: "home/commands/MQTTto433/PLSL_309/433_1"
+  payload_on: "7926927"
+  payload_off: "7926926"
+  optimistic: false
+  retain: true
