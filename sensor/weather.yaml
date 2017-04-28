@@ -1,4 +1,4 @@
-- platform: yr
+#- platform: yr
 # - platform: wunderground
   # api_key: !secret wunderground_api_key
   # monitored_conditions:
