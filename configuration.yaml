@@ -113,6 +113,11 @@ input_slider:
     max: 20
     step: 1
 
+camera:
+  platform: foscam
+  ip: 192.168.1.185
+  username: !secret foscam_user
+  password: !secret foscam_psw
 
 switch:
 - platform: mqtt
