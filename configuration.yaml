@@ -119,34 +119,6 @@ camera:
   username: !secret foscam_user
   password: !secret foscam_psw
 
-switch:
-- platform: mqtt
-  name: "TV onoff"
-  state_topic: "home/commands/IR_NEC"
-  command_topic: "home/commands/IR_NEC"
-  payload_on: "849760431"
-  payload_off: "849760431"
-  optimistic: false
-  retain: true
-
-- platform: mqtt
-  name: "433switch1"
-  state_topic: "home/#"
-  command_topic: "home/commands/MQTTto433/PLSL_309/433_1"
-  payload_on: "7926927"
-  payload_off: "7926926"
-  optimistic: false
-  retain: true
-
-- platform: mqtt
-  name: "433switch2"
-  state_topic: "home/#"
-  command_topic: "home/commands/MQTTto433/PLSL_309/433_1"
-  payload_on: "7926925"
-  payload_off: "7926924"
-  optimistic: false
-  retain: true
-
 ####################################################################################################################################################################################################
 
 climate:
@@ -172,4 +144,5 @@ light: !include_dir_merge_list light/
 zone: !include zones.yaml
 group: !include groups.yaml
 script: !include_dir_merge_named script/
+switch: !include_dir_merge_list switch/
 ####################################################################################################################################################################################################
