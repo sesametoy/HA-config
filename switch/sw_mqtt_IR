@@ -1,0 +1,8 @@
+platform: mqtt
+name: "TV onoff"
+state_topic: "home/commands/IR_NEC"
+command_topic: "home/commands/IR_NEC"
+payload_on: "849760431"
+payload_off: "849760431"
+optimistic: false
+retain: true
