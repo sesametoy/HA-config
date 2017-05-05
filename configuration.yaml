@@ -142,7 +142,7 @@ shell_command:
 automation: !include_dir_merge_list automation/
 light: !include_dir_merge_list light/
 zone: !include_dir_list zones/
-group: !include_dir_list groups/
+group: !include groups/groups.yaml
 script: !include_dir_merge_named script/
 switch: !include_dir_list switch/
 
