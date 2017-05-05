@@ -1,0 +1,5 @@
+name: WareHouse
+latitude: !secret warehouse_latitude
+longitude: !secret warehouse_longitude
+radius: 300
+icon: mdi:work
