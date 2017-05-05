@@ -1,0 +1,8 @@
+platform: command_line
+switches:
+  #Switch for Foscam Motion Detection
+  foscam_motion:
+    command_on: 'curl -k "https://192.168.1.185:443/cgi-bin/CGIProxy.fcgi?cmd=setMotionDetectConfig&isEnable=1&usr=sesame&pwd=jqmv2qpcdb"'
+    command_off: 'curl -k "https://192.168.1.185:443/cgi-bin/CGIProxy.fcgi?cmd=setMotionDetectConfig&isEnable=0&usr=sesame&pwd=jqmv2qpcdb"'
+    command_state: 'curl -k --silent "https://192.168.1.185:443/cgi-bin/CGIProxy.fcgi?cmd=getMotionDetectConfig&usr=sesame&pwd=jqmv2qpcdb" | grep -oP "(?<=isEnable>).*?(?=</isEnable>)"'
+    value_template: '{{ value == "1" }}'
