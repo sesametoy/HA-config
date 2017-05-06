@@ -137,6 +137,8 @@ climate:
 
 shell_command:
   get_latest_config: bash /home/homeassistant/.homeassistant/pullconfig.sh
+  
+  ####### before this works run from cli --- sudo su -s /bin/bash hass then ssh-keygen press enter for all then ssh-copy-id pi@127.0.0.1
   rebootpi: ssh pi@127.0.0.1 sudo reboot
 
 ####################################################################################################################################################################################################
