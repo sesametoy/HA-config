@@ -6,7 +6,6 @@
     - relative_humidity
     - solarradiation
     - temp_c
-    - weather
     - wind_degrees
     - wind_dir
     - wind_kph
