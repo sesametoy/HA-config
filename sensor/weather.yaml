@@ -11,6 +11,10 @@
     - wind_degrees
     - wind_dir
     - wind_kph
+    - weather_1d_metric
+    - weather_2d_metric
+    - weather_3d_metric
+    - weather_4d_metric
 #- platform: darksky
 #  api_key: !secret darksky_api_key
 #  update_inverval: '01:00'
