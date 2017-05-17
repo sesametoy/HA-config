@@ -1,6 +1,6 @@
 ############### Weather forcast ###############
 - platform: wunderground
-- api_key: !secret wunderground_api_key
+  api_key: !secret wunderground_api_key
   monitored_conditions:
     - feelslike_c
     - pressure_mb
