@@ -1,4 +1,5 @@
 - platform: wunderground
+  name: Weather
   api_key: !secret wunderground_api_key
   monitored_conditions:
 #    - feelslike_c
