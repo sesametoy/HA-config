@@ -79,8 +79,8 @@ tts:
 
 #you can leave sid empty if you only have one gateway
 xiaomi:
- gateways:
-   - sid:
+  gateways:
+   - mac:
      key: !secret xiaomi_key
 
 device_tracker:
