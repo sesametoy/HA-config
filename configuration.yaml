@@ -114,10 +114,10 @@ input_slider:
     step: 1
 
 camera:
-  platform: foscam
-  ip: 192.168.1.185
-  username: !secret foscam_user
-  password: !secret foscam_psw
+  - platform: foscam
+    ip: 192.168.1.185
+    username: !secret foscam_user
+    password: !secret foscam_psw
 
 ####################################################################################################################################################################################################
 
